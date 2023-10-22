@@ -1,0 +1,61 @@
+create database phmc;
+use phmc;
+show tables;
+drop table customers;
+create table customers(
+	  customer_id int primary key auto_increment,
+    customer_name varchar(100),
+    phone_no varchar(100),
+    password varchar(100)
+    DOB date,
+    address varchar(150)
+    );
+
+create table categories(
+		category_id int primary key auto_increment,
+        category_name varchar(100)
+        );
+
+create table medication(
+	medication_id int primary key auto_increment,
+    medicine_name varchar(100),
+    price int,
+    stock_quantity int,
+    dosage_strength int,
+    category_id int,
+    foreign key (category_id) references categories(category_id)
+    );
+    
+create table prescriptions(
+	prescription_id int primary key auto_increment,
+    customer_id int,
+    doctor_id int,
+    date_of_prescription date,
+    status bool,
+    prescription_image longblob,
+    foreign key (customer_id) references customers(customer_id)
+    );
+    
+create table prescribed_medicines(
+	id int primary key auto_increment,
+    prescription_id int,
+    medication_id int,
+    quantity int,
+    foreign key (prescription_id) references prescriptions(prescription_id),
+    foreign key (medication_id) references medication(medication_id)
+    );
+    
+create table orders(
+	order_id int primary key auto_increment,
+    prescription_id int,
+    order_date date,
+    total_amount int,
+    address varchar(150),
+    foreign key (prescription_id) references prescriptions(prescription_id)
+    );
+
+select * from customers;
+
+show databases;
+
+
