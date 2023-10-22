@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>customers Form</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+</head>
+<body> 
+    <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>customers Form</span></div>
+        <form th:action="@{/customers}" th:object="${customers}" method="post">
+  <p th:if="${error}" class="error">phone_no & Password Incorrect</p>
+          <div class="row">
+           
+            <input type="text" name="phone_no">
+          </div>
+          <div class="row">
+            
+            <input type="password" name="password">
+          </div>
+          <div class="row button">
+            <input type="submit" value="customers">
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </body>
+</html>
